@@ -194,3 +194,68 @@ The replay engine follows a deterministic event-processing pipeline:
 - **Extensibility** – New ITCH message types and processing modules can be added without changing the overall architecture.
 - **Maintainability** – Components are loosely coupled, making the codebase easier to test, debug, and extend.
 - **Performance-Oriented** – The pipeline minimizes unnecessary data copying while maintaining a simple and scalable processing flow.
+
+## 📁 Project Structure
+
+The project is organized into modular components, separating protocol definitions, core replay logic, utilities, documentation, and supporting resources. This structure improves maintainability, scalability, and ease of future development.
+
+```text
+hft-market-parser/
+│
+├── benchmarks/                # Performance benchmarks and benchmark results
+├── build/                     # CMake build artifacts (generated)
+├── data/
+│   └── raw/                   # NASDAQ TotalView-ITCH datasets (not tracked)
+│
+├── docs/                      # Additional project documentation
+├── images/                    # Architecture diagrams and README assets
+│
+├── include/                   # Public header files
+│   ├── byte_utils.h           # Endian conversion utilities
+│   ├── itch_protocol.h        # NASDAQ ITCH protocol message definitions
+│   ├── itch_reader.h          # Binary file reader interface
+│   ├── itch_decoder.h         # ITCH message decoder interface
+│   ├── order_book.h           # In-memory limit order book
+│   ├── replay_engine.h        # Replay engine interface
+│   └── statistics.h           # Replay statistics data structures
+│
+├── legacy/                    # Archived prototype implementations
+│
+├── scripts/                   # Utility scripts and helper tools
+│
+├── src/
+│   └── itch/
+│       ├── main.cpp           # Application entry point
+│       ├── itch_reader.cpp    # Binary dataset reader
+│       ├── itch_decoder.cpp   # ITCH message decoding logic
+│       └── replay_engine.cpp  # Replay pipeline implementation
+│
+├── tests/                     # Unit and integration tests (planned)
+│
+├── .gitignore
+├── CMakeLists.txt             # CMake build configuration
+├── LICENSE                    # MIT License
+└── README.md                  # Project documentation
+```
+
+---
+
+### 📌 Directory Responsibilities
+
+| Directory | Purpose |
+|-----------|---------|
+| `include/` | Public headers defining interfaces, protocol structures, and utilities. |
+| `src/` | Core implementation of the replay engine and protocol processing pipeline. |
+| `data/` | Location for NASDAQ ITCH datasets used during replay (excluded from Git). |
+| `benchmarks/` | Benchmark reports and future performance measurements. |
+| `docs/` | Additional documentation and design notes. |
+| `images/` | Diagrams, screenshots, and visual assets used in the README. |
+| `scripts/` | Helper scripts for automation and future tooling. |
+| `tests/` | Test suite for validating parser and replay engine correctness. |
+| `legacy/` | Archived experimental code retained for reference. |
+
+---
+
+### 🧩 Design Philosophy
+
+The repository follows a modular organization where each directory serves a single responsibility. This separation simplifies maintenance, encourages extensibility, and allows new protocol handlers, replay components, benchmarks, or testing modules to be integrated without affecting the overall project structure.
