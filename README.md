@@ -59,3 +59,63 @@ This project demonstrates practical experience with:
 ### 🚀 Long-Term Vision
 
 The long-term vision of this project is to evolve from a replay engine into a comprehensive market data platform capable of supporting the complete NASDAQ TotalView-ITCH protocol, advanced replay analytics, performance benchmarking, visualization dashboards, and low-latency optimization techniques commonly used in quantitative trading infrastructure.
+
+## ✨ Core Features
+
+### 📂 Binary Market Data Processing
+- Reads and processes real **NASDAQ TotalView-ITCH 5.0** binary datasets.
+- Supports efficient sequential replay of large-scale market data files.
+- Handles datasets containing **hundreds of millions of exchange messages**.
+
+### 🔍 ITCH Protocol Decoder
+- Decodes binary ITCH messages into strongly typed C++ structures.
+- Currently supports the following message types:
+  - **S** — System Event
+  - **R** — Stock Directory
+  - **A** — Add Order
+  - **E** — Order Executed
+  - **X** — Order Cancel
+
+### 📖 Replay Engine
+- Replays market events in the original order they appear within the dataset.
+- Maintains a continuous event-processing pipeline from file ingestion to order book updates.
+- Supports configurable replay limits for faster development and testing.
+
+### 📈 In-Memory Limit Order Book
+- Maintains active orders using an efficient hash-based lookup structure.
+- Supports:
+  - Order insertion
+  - Partial executions
+  - Complete executions
+  - Order cancellations
+- Provides real-time tracking of active orders during replay.
+
+### 📊 Replay Statistics
+Collects runtime statistics including:
+
+- Total messages processed
+- System Event messages
+- Stock Directory messages
+- Add Order messages
+- Executed Order messages
+- Cancel Order messages
+- Unknown message types
+- Active orders remaining after replay
+- Replay execution time
+- Processing throughput (messages/second)
+
+### ⚙️ Modern C++20 Implementation
+- Modular project architecture
+- Packed protocol structures for binary parsing
+- Endian-safe data conversion utilities
+- CMake-based build system
+- Portable Linux / WSL development environment
+
+### 🏗️ Extensible Design
+The codebase is organized into independent modules, making it straightforward to extend with:
+
+- Additional ITCH message types
+- Performance optimizations
+- Advanced order book functionality
+- Replay analytics
+- Benchmarking tools
