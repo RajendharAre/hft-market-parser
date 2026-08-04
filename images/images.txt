@@ -1,1 +1,1 @@
-
+this folder contains the images regarding the output performance of generated data and real nasdaq data.
