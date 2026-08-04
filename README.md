@@ -478,3 +478,105 @@ cmake ..
 
 make
 ```
+
+## 🛣️ Roadmap & Future Enhancements
+
+This project is actively evolving. While the current implementation provides a functional replay engine for NASDAQ TotalView-ITCH market data, several enhancements are planned to improve performance, protocol coverage, and analytical capabilities.
+
+---
+
+### ✅ Version 1.0 (Current)
+
+- [x] Modular C++20 project architecture
+- [x] Binary ITCH file reader
+- [x] ITCH protocol decoder
+- [x] Replay engine
+- [x] In-memory limit order book
+- [x] Replay statistics
+- [x] Configurable replay limits
+- [x] CMake build system
+- [x] Benchmarking support
+
+---
+
+### 🚀 Version 1.1
+
+#### Protocol Support
+
+- [ ] Support additional NASDAQ ITCH message types
+  - Order Delete (`D`)
+  - Order Replace (`U`)
+  - Trade Message (`P`)
+  - Cross Trade (`Q`)
+  - Broken Trade (`B`)
+  - NOII Message (`I`)
+
+#### Order Book
+
+- [ ] Complete order lifecycle management
+- [ ] Bid/Ask depth tracking
+- [ ] Best Bid and Offer (BBO)
+- [ ] Price-level aggregation
+
+---
+
+### ⚡ Version 2.0
+
+#### Performance Optimizations
+
+- [ ] Memory-mapped file I/O (`mmap`)
+- [ ] Zero-copy parsing improvements
+- [ ] Cache-aware memory layouts
+- [ ] Custom memory allocator
+- [ ] SIMD-assisted binary parsing
+- [ ] Reduced memory footprint
+
+#### Replay Engine
+
+- [ ] Parallel replay pipeline
+- [ ] Configurable replay speed
+- [ ] Timestamp-based replay
+- [ ] Event filtering
+- [ ] Multi-file replay support
+
+---
+
+### 📊 Version 2.5
+
+#### Analytics
+
+- [ ] Order flow analytics
+- [ ] Market activity summaries
+- [ ] Symbol-level statistics
+- [ ] Message distribution reports
+- [ ] CSV/JSON export
+- [ ] Historical replay reports
+
+---
+
+### 📈 Version 3.0
+
+#### Visualization
+
+- [ ] Interactive replay dashboard
+- [ ] Order book visualization
+- [ ] Market depth charts
+- [ ] Replay timeline
+- [ ] Performance monitoring dashboard
+
+---
+
+### 🧪 Testing & Quality
+
+- [ ] Unit tests
+- [ ] Integration tests
+- [ ] Benchmark test suite
+- [ ] Continuous Integration (GitHub Actions)
+- [ ] Static analysis
+- [ ] Code coverage reports
+
+---
+
+### 🌍 Long-Term Vision
+
+The long-term goal of this project is to evolve into a comprehensive **market data processing framework** capable of replaying large-scale financial datasets, reconstructing complete limit order books, generating replay analytics, and serving as a platform for experimenting with modern systems programming and performance optimization techniques in quantitative finance.
