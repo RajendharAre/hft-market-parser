@@ -1,0 +1,48 @@
+# ==========================
+# Build Directory
+# ==========================
+build/
+
+# ==========================
+# Compiled Executables
+# ==========================
+itch_reader
+check
+parser_engine
+file_parser
+real_data_ingest
+
+# ==========================
+# Object Files
+# ==========================
+*.o
+*.obj
+*.out
+*.exe
+
+# ==========================
+# CMake
+# ==========================
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# ==========================
+# Editor Files
+# ==========================
+.vscode/
+.idea/
+
+# ==========================
+# Logs
+# ==========================
+*.log
+
+# ==========================
+# NASDAQ Dataset
+# ==========================
+data/raw/*.bin
+
+
+legacy/
