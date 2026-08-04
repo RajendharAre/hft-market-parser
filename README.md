@@ -340,3 +340,141 @@ The following enhancements are planned for future releases:
 - Multi-threaded replay pipeline
 - Detailed latency profiling
 - Advanced performance benchmarking
+
+## 🚀 Build & Usage
+
+### 📋 Prerequisites
+
+Ensure the following tools are installed on your system before building the project:
+
+- **C++20 compatible compiler** (GCC 13+ or Clang 16+ recommended)
+- **CMake 3.16+**
+- **Git**
+
+Verify your installation:
+
+```bash
+g++ --version
+cmake --version
+git --version
+```
+
+---
+
+## 📥 Clone the Repository
+
+```bash
+git clone git@github.com:RajendharAre/hft-market-parser.git
+
+cd hft-market-parser
+```
+
+---
+
+## 🔨 Build the Project
+
+Create an out-of-source build directory and compile using CMake.
+
+```bash
+mkdir build
+
+cd build
+
+cmake ..
+
+make
+```
+
+After a successful build, the executable will be generated as:
+
+```text
+build/itch_reader
+```
+
+---
+
+## 📂 Dataset Setup
+
+Download the **NASDAQ TotalView-ITCH 5.0** dataset from the official NASDAQ website and place the binary file inside:
+
+```text
+data/raw/
+```
+
+Example:
+
+```text
+data/
+└── raw/
+    └── nasdaq_07302019.bin
+```
+
+> **Note:** Due to licensing restrictions and file size, the dataset is **not included** in this repository.
+
+---
+
+## ▶️ Running the Replay Engine
+
+### Process the Entire Dataset
+
+```bash
+./build/itch_reader data/raw/nasdaq_07302019.bin
+```
+
+---
+
+### Process a Limited Number of Messages
+
+Replay only the first **10 million** messages:
+
+```bash
+./build/itch_reader data/raw/nasdaq_07302019.bin 10000000
+```
+
+Replay only the first **100 million** messages:
+
+```bash
+./build/itch_reader data/raw/nasdaq_07302019.bin 100000000
+```
+
+---
+
+## 📤 Sample Output
+
+```text
+Processed 10000000 messages
+
+========== Replay Finished ==========
+Total Messages     : 10000000
+System Events      : 2
+Stock Directory    : 8849
+Add Orders         : 3838374
+Execute Orders     : 38708
+Cancel Orders      : 635111
+Active Orders      : 3814989
+Unknown Messages   : 5478956
+Elapsed Time       : 17.1388 sec
+Throughput         : 583472 msg/sec
+```
+
+---
+
+## 🧹 Clean Build
+
+To remove all generated build files:
+
+```bash
+rm -rf build
+```
+
+Rebuild the project:
+
+```bash
+mkdir build
+
+cd build
+
+cmake ..
+
+make
+```
