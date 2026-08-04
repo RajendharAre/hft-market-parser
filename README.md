@@ -1,14 +1,20 @@
-# High-Frequency Trading (HFT) Low-Latency Market Data Parser
+# NASDAQ TotalView-ITCH Replay Engine
 
-An enterprise-grade, ultra-low latency C++20 simulation pipeline capable of parsing binary exchange market data streams at sub-microsecond speeds. Bypasses typical OS/Network overheads to maintain execution speeds under 200 nanoseconds.
+> **A modular market data replay engine built in Modern C++20 for parsing, decoding, and replaying real NASDAQ TotalView-ITCH 5.0 binary market data.**
 
-## 📊 Performance Benchmarks (Target Layout: x86_64 Linux/WSL)
-* **Zero-Copy Memory Processing Engine:** ~12.77 nanoseconds per packet payload.
-* **Peak Network Pipeline Throughput:** Over 78.2 Million messages per second.
-* **Active Database Capacity:** Maintains structural stability tracking 500,000+ active resting orders in true constant $O(1)$ time.
+[![C++20](https://img.shields.io/badge/C%2B%2B-20-blue.svg)](https://en.cppreference.com/w/cpp/20)
+[![Build System](https://img.shields.io/badge/Build-CMake-brightgreen)](https://cmake.org/)
+[![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20WSL-orange)]()
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-## 🛠️ Key Architectural Implementations
-1. **Zero-Copy Parsing:** Avoids expensive memory replication loops (`malloc`/`new`) by leveraging `reinterpret_cast` directly on incoming socket stack data frames.
-2. **Mechanical Sympathy Packing:** Employs explicit structures wrapped via `#pragma pack(push, 1)` to eliminate compiler-injected padding bytes, ensuring pristine L1/L2 cache alignment.
-3. **Branch Prediction Optimization:** Integrates explicit modern C++20 `[[likely]]` and `[[unlikely]]` indicators to ensure fast execution on the hot-path (Order Adds).
-4. **Dynamic Resizing Mitigation:** Implements an internal upfront lookup buffer space allocation model inside an open-addressed hash map infrastructure to block context-switching delay traps.
+---
+
+## 📌 Overview
+
+This project implements a **high-performance market data replay engine** capable of parsing and decoding **NASDAQ TotalView-ITCH 5.0** binary market data. It reconstructs an **in-memory limit order book**, maintains replay statistics, and processes **hundreds of millions of real exchange messages** using a modular Modern C++20 architecture.
+
+The primary objective of this project is to explore **systems programming**, **binary protocol parsing**, **market microstructure**, and **performance-oriented software design** by building a replay engine similar to those used in quantitative trading and electronic exchange infrastructure.
+
+---
+
+> **Current Status:** 🚧 Version 1.0 (Core Replay Engine Complete)
