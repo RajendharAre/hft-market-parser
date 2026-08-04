@@ -259,3 +259,84 @@ hft-market-parser/
 ### 🧩 Design Philosophy
 
 The repository follows a modular organization where each directory serves a single responsibility. This separation simplifies maintenance, encourages extensibility, and allows new protocol handlers, replay components, benchmarks, or testing modules to be integrated without affecting the overall project structure.
+
+## 📊 Performance & Benchmark
+
+The replay engine has been evaluated using a real **NASDAQ TotalView-ITCH 5.0** binary dataset. The benchmarks below represent the current implementation running in a **Linux (WSL)** development environment using the Modern C++20 replay pipeline.
+
+> **Note:** These benchmarks reflect the current implementation and serve as a baseline for future optimizations. Planned improvements such as memory-mapped I/O (`mmap`), cache-aware data structures, and multi-threaded replay are expected to further improve throughput.
+
+---
+
+### 🖥️ Benchmark Environment
+
+| Component | Specification |
+|-----------|---------------|
+| Language | C++20 |
+| Build System | CMake |
+| Compiler | GCC 13 |
+| Operating System | Ubuntu (WSL) |
+| Dataset | NASDAQ TotalView-ITCH 5.0 |
+| Dataset Size | ~8.1 GB |
+
+---
+
+### 📈 Replay Benchmark Results
+
+#### Development Benchmark
+
+| Metric | Value |
+|--------|------:|
+| Messages Processed | 10,000,000 |
+| Replay Time | 17.14 seconds |
+| Throughput | 583,472 messages/sec |
+
+---
+
+#### Large-Scale Benchmark
+
+| Metric | Value |
+|--------|------:|
+| Messages Processed | 100,000,000 |
+| Replay Time | 543.49 seconds |
+| Throughput | 183,997 messages/sec |
+
+---
+
+### 📊 Supported ITCH Message Statistics (100 Million Replay)
+
+| Message Type | Count |
+|-------------|------:|
+| System Event (`S`) | 3 |
+| Stock Directory (`R`) | 8,849 |
+| Add Order (`A`) | 43,756,409 |
+| Order Executed (`E`) | 2,136,661 |
+| Order Cancel (`X`) | 1,432,796 |
+| Unknown Messages | 52,665,282 |
+| Active Orders Remaining | 42,304,824 |
+
+---
+
+### 🎯 Scalability
+
+The replay engine has been successfully validated on datasets containing:
+
+- **10 Million** market events
+- **100 Million** market events
+- **282+ Million** market events (Full NASDAQ trading-day dataset)
+
+This demonstrates the ability to process large-scale binary market data while maintaining an in-memory limit order book throughout replay.
+
+---
+
+### 🚀 Future Performance Optimizations
+
+The following enhancements are planned for future releases:
+
+- Memory-mapped file I/O (`mmap`)
+- Lock-free data structures
+- Cache-aware memory layouts
+- SIMD-assisted parsing
+- Multi-threaded replay pipeline
+- Detailed latency profiling
+- Advanced performance benchmarking
