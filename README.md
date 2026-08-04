@@ -581,4 +581,53 @@ This project is actively evolving. While the current implementation provides a f
 
 The long-term goal of this project is to evolve into a comprehensive **market data processing framework** capable of replaying large-scale financial datasets, reconstructing complete limit order books, generating replay analytics, and serving as a platform for experimenting with modern systems programming and performance optimization techniques in quantitative finance.
 
+## 📄 License
 
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for complete license information.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome!
+
+If you would like to improve the project, feel free to:
+
+- Report bugs or unexpected behavior
+- Suggest new features or enhancements
+- Improve documentation
+- Optimize performance
+- Add support for additional ITCH message types
+- Submit pull requests
+
+Before contributing, please ensure that your changes follow the existing project structure and coding style.
+
+---
+
+## 🙏 Acknowledgements
+
+This project was inspired by modern electronic trading systems and the engineering challenges involved in processing large-scale financial market data.
+
+Special thanks to:
+
+- **NASDAQ** for providing the **TotalView-ITCH 5.0** market data specification.
+- The **Modern C++** community for extensive documentation and best practices.
+- Open-source developers whose tools and libraries make systems programming more accessible.
+
+---
+
+## ⚠️ Disclaimer
+
+This project is intended for **educational, research, and software engineering purposes only**.
+
+It is **not** affiliated with, endorsed by, or sponsored by **NASDAQ** or any financial institution.
+
+The NASDAQ TotalView-ITCH dataset is subject to NASDAQ's licensing terms and is **not distributed** with this repository. Users are responsible for obtaining the dataset through the appropriate official channels.
+
+---
+
+## 👨‍💻 Author
+
+**Rajendhar Are**
+
+If you found this project useful, consider giving it a ⭐ on GitHub. Feedback, suggestions, and contributions are always appreciated!
