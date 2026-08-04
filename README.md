@@ -119,3 +119,78 @@ The codebase is organized into independent modules, making it straightforward to
 - Advanced order book functionality
 - Replay analytics
 - Benchmarking tools
+
+## 🏗️ System Architecture
+
+The replay engine is organized as a modular processing pipeline where each component has a single responsibility. Incoming binary market data flows through a sequence of stages, allowing each module to focus on parsing, decoding, processing, or reporting.
+
+```text
+                     NASDAQ TotalView-ITCH 5.0 Dataset
+                                   │
+                                   ▼
+                        ┌─────────────────────┐
+                        │     ITCH Reader     │
+                        │  Binary File Input  │
+                        └──────────┬──────────┘
+                                   │
+                                   ▼
+                        ┌─────────────────────┐
+                        │    ITCH Decoder     │
+                        │ Message Extraction  │
+                        └──────────┬──────────┘
+                                   │
+                    ┌──────────────┴──────────────┐
+                    │                             │
+                    ▼                             ▼
+        ┌─────────────────────┐       ┌─────────────────────┐
+        │   Replay Statistics │       │  Limit Order Book   │
+        │ Message Counters    │       │ Active Order State  │
+        └──────────┬──────────┘       └──────────┬──────────┘
+                   │                             │
+                   └──────────────┬──────────────┘
+                                  ▼
+                      ┌─────────────────────────┐
+                      │     Replay Summary      │
+                      │ Statistics & Metrics    │
+                      └─────────────────────────┘
+```
+
+---
+
+### 🔄 Processing Pipeline
+
+The replay engine follows a deterministic event-processing pipeline:
+
+1. **ITCH Reader**
+   - Opens the binary NASDAQ dataset.
+   - Reads one ITCH message at a time.
+   - Passes raw message bytes to the decoder.
+
+2. **ITCH Decoder**
+   - Identifies the ITCH message type.
+   - Converts raw binary data into structured C++ objects.
+   - Dispatches each decoded message to the appropriate processing module.
+
+3. **Limit Order Book**
+   - Maintains the current state of active market orders.
+   - Updates order state based on Add, Execute, and Cancel messages.
+   - Tracks the remaining active orders throughout replay.
+
+4. **Statistics Engine**
+   - Records replay metrics during execution.
+   - Counts each supported ITCH message type.
+   - Measures replay duration and processing throughput.
+
+5. **Replay Summary**
+   - Generates a consolidated summary after replay completes.
+   - Reports message counts, active orders, elapsed time, and replay throughput.
+
+---
+
+### 🧩 Architectural Design Principles
+
+- **Modular Design** – Each component has a clearly defined responsibility.
+- **Separation of Concerns** – File I/O, protocol decoding, business logic, and statistics are implemented independently.
+- **Extensibility** – New ITCH message types and processing modules can be added without changing the overall architecture.
+- **Maintainability** – Components are loosely coupled, making the codebase easier to test, debug, and extend.
+- **Performance-Oriented** – The pipeline minimizes unnecessary data copying while maintaining a simple and scalable processing flow.
